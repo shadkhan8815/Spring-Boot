@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.rays.dto.RoleDTO;
 
 @Repository
-public class RoleDAOimp implements RoleDAOInt {
+public class RoleDAOImp implements RoleDAOInt {
 	
 	@PersistenceContext
 	public EntityManager entityManager;
