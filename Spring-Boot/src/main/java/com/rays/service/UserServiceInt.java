@@ -1,5 +1,7 @@
 package com.rays.service;
 
+import java.util.List;
+
 import com.rays.dto.UserDTO;
 
 public interface UserServiceInt {
@@ -13,5 +15,7 @@ public interface UserServiceInt {
 	public UserDTO findById(long pk);
 	
 	public long save (UserDTO dto);
+	
+	public List search (UserDTO dto, int pageNo, int pageSize);
 
 }

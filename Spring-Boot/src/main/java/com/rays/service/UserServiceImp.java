@@ -1,16 +1,25 @@
 package com.rays.service;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rays.dao.UserDAOInt;
+import com.rays.dto.RoleDTO;
 import com.rays.dto.UserDTO;
 
 @Service
 @Transactional
 public class UserServiceImp implements UserServiceInt {
+	
+	@PersistenceContext
+	public EntityManager entityManager;
 
 	@Autowired
 	public UserDAOInt userdao;
@@ -59,4 +68,9 @@ public class UserServiceImp implements UserServiceInt {
 		return id;
 	}
 
+	@Transactional(readOnly = true)
+	public List search(UserDTO dto, int pageNo, int pageSize) {
+		List list = userdao.search(dto, pageNo, pageSize);
+		return list;
+	}
 }

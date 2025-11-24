@@ -1,5 +1,7 @@
 package com.rays.ctl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +94,27 @@ public class RoleCtl extends BaseCtl {
 		ors.addData(dto);
 		return ors;
 	}
+	
+	@PostMapping("search/{pageNo}")
+	public ORSResponse search(@RequestBody RoleForm form, @PathVariable int pageNo) {
+
+		ORSResponse ors = new ORSResponse();
+
+		RoleDTO dto = (RoleDTO) form.getDto();
+
+		int pageSize = 5;
+
+		List list = roleService.search(dto, pageNo, pageSize);
+
+		if (list != null && list.size() > 0) {
+			ors.setSuccess(true);
+		}
+
+		ors.addData(list);
+
+		return ors;
+
+	}
+
 
 }
