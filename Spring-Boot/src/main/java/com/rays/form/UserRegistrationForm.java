@@ -7,7 +7,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class UserRegistrationForm {
+import com.rays.common.BaseDTO;
+import com.rays.common.BaseForm;
+import com.rays.dto.UserDTO;
+
+public class UserRegistrationForm extends BaseForm{
 	
 	@NotEmpty(message = "firstName is required")
 	private String firstName;
@@ -66,5 +70,19 @@ public class UserRegistrationForm {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	@Override
+	public BaseDTO getDto() {
+		UserDTO dto = new UserDTO();
+		
+		dto.setFirstName(firstName);
+		dto.setLastName(lastName);
+		dto.setLoginId(loginId);
+		dto.setPassword(password);
+		dto.setDob(dob);
+		dto.setRoleId(2L);
+		
+		return dto;
 	}
 }

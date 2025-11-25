@@ -73,4 +73,18 @@ public class UserServiceImp implements UserServiceInt {
 		List list = userdao.search(dto, pageNo, pageSize);
 		return list;
 	}
+
+	@Override
+	public UserDTO authenticate(String loginId, String password) {
+		
+		UserDTO dto = userdao.findByUniqueKey(loginId, password);
+		
+		if (dto != null) {
+			if (dto.getPassword().equals(password)) {
+				return dto ;
+			}
+		}
+		
+		return null;
+	}
 }
