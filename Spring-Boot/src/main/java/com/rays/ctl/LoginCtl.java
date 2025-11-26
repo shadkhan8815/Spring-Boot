@@ -15,6 +15,7 @@ import com.rays.common.ORSResponse;
 import com.rays.dto.UserDTO;
 import com.rays.form.LoginForm;
 import com.rays.form.UserRegistrationForm;
+import com.rays.service.UserServiceImp;
 import com.rays.service.UserServiceInt;
 
 @RestController
@@ -22,7 +23,7 @@ import com.rays.service.UserServiceInt;
 public class LoginCtl extends BaseCtl {
 
 	@Autowired
-	public UserServiceInt service;
+	public UserServiceImp service;
 
 	@PostMapping("login")
 	public ORSResponse login(@RequestBody @Valid LoginForm form, BindingResult bindingResult, HttpSession session) {

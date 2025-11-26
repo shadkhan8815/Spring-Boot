@@ -77,7 +77,7 @@ public class UserServiceImp implements UserServiceInt {
 	@Override
 	public UserDTO authenticate(String loginId, String password) {
 		
-		UserDTO dto = userdao.findByUniqueKey(loginId, password);
+		UserDTO dto = userdao.findByUniqueKey("loginId", loginId);
 		
 		if (dto != null) {
 			if (dto.getPassword().equals(password)) {
